@@ -22,21 +22,15 @@ module.exports = [
     },
     {
         type: "input",
-        name: "officeNum",
-        message: "Manager office number?",
-        when: (answers) => answers.employeeType === "Manager",
-    },
-    {
-        type: "input",
         name: "github",
         message: "GitHub user name?",
-        when: (answers) => answers.employeeType === "Engineer",
+        when: (answers) => answers.role === "Engineer",
     },
     {
         type: "input",
         name: "school",
         message: "School Name?",
-        when: (answers) => answers.employeeType === "Intern",
+        when: (answers) => answers.role === "Intern",
     },
     {
       type: "confirm",

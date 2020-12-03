@@ -1,8 +1,8 @@
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const questions = requirer("./questions");
-const managerQuestions = requirer("./managerQuestions");
+const questions = require("./questions");
+const managerQuestions = require("./managerQuestions");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -29,8 +29,8 @@ function employees() {
     if (response.role === "Engineer") {
       let emp = new Engineer(
         response.name,
-        response.email,
         response.id,
+        response.email,
         response.github
       );
       staff.push(emp);
@@ -38,12 +38,16 @@ function employees() {
     if (response.role === "Intern") {
       let emp = new Intern(
         response.name,
-        response.email,
         response.id,
-        response.github
+        response.email,
+        response.school
       );
       staff.push(emp);
-    } else {
+    }
+    if(response.again){
+        employees();
+    }
+    else {
       const template = render(staff);
       fs.writeFile(outputPath, template, (err) =>
         err ? console.log(err) : console.log("success!")
